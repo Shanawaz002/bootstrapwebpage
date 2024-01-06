@@ -6,6 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $(document).on("contextmenu", function(e){
+         e.preventDefault();
+        });
+      });
+
+       $(document).ready(function(){
+          $('#scrollToTopBtn').on('click', function(){
+          $('html, body').animate({scrollTop: 0}, 'slow');
+        });
+      });
+
+    </script>
     <style>
         .fakeimg {
             height: 200px;
@@ -15,11 +30,18 @@
             max-width: 100%;
             height: auto;
         }
-        /*.navbar {
-            background-image: url('data:image/png;base64,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');
-            background-size: cover;
-            background-position: center;
-        }*/
+        
+        #scrollToTopBtn {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          display: none;
+          cursor: pointer;
+          background-color: #333;
+          color: #fff;
+          padding: 10px;
+          border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -82,12 +104,40 @@
             <h5 class="text-center">JOB ORIENTED COURSES</h5>
             <div class="img-fluid"><img src="https://media.licdn.com/dms/image/D5610AQGlkwjn44Ou8A/image-shrink_800/0/1703943817496?e=1704967200&v=beta&t=4ozuQbYMAQzNT7xPBDObxtHvXvYcAPb8LVFvb59Bge4" style="width:100%;" class="mobile-img"></div>
             <p>Job-oriented courses are training and academic courses that prepare professionals for a particular career field or role. A traditional academic course may provide an overview of a certain topic or area, but a job-oriented course focuses on the knowledge and skills required for a particular job.</p>
-            <div class="img-fluid"><img src="https://i.pinimg.com/736x/50/c1/d8/50c1d8e9d0134c1bb117f9856234e12f.jpg" style="width:100%;" class="mobile-img"></div>
-            <br>
+            <!--<div class="img-fluid"><img src="https://i.pinimg.com/736x/50/c1/d8/50c1d8e9d0134c1bb117f9856234e12f.jpg" style="width:100%;" class="mobile-img"></div>
+            <br>-->
             <div class="img-fluid"><img src="https://i.redd.it/kdbbzzhvd5181.jpg" style="width:100%;" class="mobile-img"></div>
             <p>Lorem ipsum dora sit an ghit griin jwnfr aoovff sferwe csvlnnkslf sfdfv rwwrlnvc afrg adflnj lamkfo laoejr vjoroscv </p>
             <br>
-            <div class="img-fluid"><img src="https://www.apponix.com/storage/images/irpeMQMQokkuFxB3k4zZ8tpr1yaVlH1rktLZvHax.png" style="width:100%;" class="mobile-img"></div>
+            <!--<div class="img-fluid"><img src="https://www.apponix.com/storage/images/irpeMQMQokkuFxB3k4zZ8tpr1yaVlH1rktLZvHax.png" style="width:100%;" class="mobile-img"></div>-->
+            <div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-1 form-container">
+            <h4 class="text-center mb-4">Admission Enquiry Form</h4>
+            <form id="admissionForm">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone</label>
+                    <input type="text" class="form-control" id="phone" name="phone" required>
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control" id="message" name="message" rows="4"></textarea>
+                </div>
+                <center>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                </center>
+            </form>
+        </div>
+    </div>
+</div>
             <h3 class="mt-4">Some Links</h3>
             <p>Are you interested to join to join demo class</p>
             <ul class="nav nav-pills flex-column">
@@ -118,9 +168,21 @@
     </div>
 </div>
 
+<div id="scrollToTopBtn">Scroll to Top</div>
+
+  <script>
+    $(window).scroll(function() {
+      if ($(this).scrollTop() > 100) {
+        $('#scrollToTopBtn').fadeIn();
+      } else {
+        $('#scrollToTopBtn').fadeOut();
+      }
+    });
+  </script>
+
 <div class="mt-5 p-4 bg-dark text-white text-center">
-    <p>&copy; <strong>Designed by Shaazsk</strong><br>
-    Contact us <strong>+91 xxxx xxxx xx</strong></p>
+    <h6>&copy; Designed by Shaazsk<sup>2</sup><br>
+    Contact us +91 xxxx xxxx xx</h6>
 </div>
 
 </body>
